@@ -10,8 +10,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan({ "com.epam.spring_security_test.dao.*" })
-@ComponentScan({ "com.epam.spring_security_test.service.*" })
+@ComponentScan({ "com.epam.authorization.dao.*" })
+@ComponentScan({ "com.epam.authorization.service.*" })
 @Import({ EntityManagerConfig.class })
 public class AppConfig {
 	
