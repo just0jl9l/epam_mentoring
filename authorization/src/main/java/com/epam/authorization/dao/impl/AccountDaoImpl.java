@@ -16,12 +16,12 @@ public class AccountDaoImpl implements AccountDao {
 	@PersistenceContext
 	private EntityManager manager;
 
-	private static final String SQL_SELECT = "FROM Account WHERE Login = ? AND Password = ?;";
+	private static final String SQL_SELECT = "FROM Account WHERE Login = :value1;";
 
 	@Override
-	public Account get(String login, String password) throws DaoException {
+	public Account findByLogin(String login) throws DaoException {
 		try {
-			return manager.createQuery(SQL_SELECT, Account.class).getSingleResult();
+			return manager.createQuery(SQL_SELECT, Account.class).setParameter("value1", login).getSingleResult();
 		} catch (DataAccessException e) {
 			throw new DaoException("Exception occurred during authorization", e);
 		}
