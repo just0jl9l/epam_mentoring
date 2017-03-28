@@ -21,7 +21,7 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account findByLogin(String login) {
-		return (Account) manager.createQuery(SQL_SELECT_BY_LOGIN).setParameter("value1", login).getSingleResult();
+		return manager.createQuery(SQL_SELECT_BY_LOGIN, Account.class).setParameter("value1", login).getSingleResult();
 	}
 
 	@Override
