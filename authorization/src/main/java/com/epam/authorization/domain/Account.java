@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,7 +33,10 @@ public class Account implements Serializable {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "ACCOUNT_AND_ACCOUNT_ROLE", 
+            joinColumns = { @JoinColumn(name = "ACCOUNT_ID") }, 
+            inverseJoinColumns = { @JoinColumn(name = "ACCOUNT_ROLE_ID") })
 	private Set<AccountRole> role = new HashSet<>();
 
 	public Integer getId() {
