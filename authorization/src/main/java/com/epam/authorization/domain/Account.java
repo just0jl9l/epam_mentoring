@@ -37,13 +37,13 @@ public class Account implements Serializable {
 	@JoinTable(name = "ACCOUNT_AND_ACCOUNT_ROLE", 
             joinColumns = { @JoinColumn(name = "ACCOUNT_ID") }, 
             inverseJoinColumns = { @JoinColumn(name = "ACCOUNT_ROLE_ID") })
-	private Set<AccountRole> role = new HashSet<>();
+	private Set<AccountRole> roles = new HashSet<>();
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setID(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -63,12 +63,12 @@ public class Account implements Serializable {
 		this.login = login;
 	}
 
-	public Set<AccountRole> getUserRole() {
-		return role;
+	public Set<AccountRole> getRoles() {
+		return roles;
 	}
 
-	public void setUserRole(Set<AccountRole> userRole) {
-		this.role = userRole;
+	public void setRoles(Set<AccountRole> roles) {
+		this.roles = roles;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class Account implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		return result;
 	}
 
@@ -106,17 +106,17 @@ public class Account implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (roles == null) {
+			if (other.roles != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!roles.equals(other.roles))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", login=" + login + ", password=" + password + ", role=" + role + "]";
+		return "Account [id=" + id + ", login=" + login + ", password=" + password + ", role=" + roles + "]";
 	}
 	
 }
