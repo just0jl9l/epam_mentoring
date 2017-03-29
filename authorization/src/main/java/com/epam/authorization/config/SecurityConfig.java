@@ -44,11 +44,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/", "/list")
-//				.access("hasRole('USER') or hasRole('ADMIN')")
-//				.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')").antMatchers("/edit-user-*")
-//				.access("hasRole('ADMIN') or hasRole('DBA')").and().formLogin().loginPage("/login")
-//				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password");
+		http.authorizeRequests()
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.and()
+		  .formLogin().loginPage("/login").failureUrl("/login?error")
+		  .usernameParameter("login").passwordParameter("password")
+		.and()
+		  .logout().logoutSuccessUrl("/login?logout")
+		.and()
+		  .exceptionHandling().accessDeniedPage("/403")
+		.and()
+		  .csrf();
 	}
 
 
