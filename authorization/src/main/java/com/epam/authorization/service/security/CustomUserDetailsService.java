@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.authorization.domain.Account;
 import com.epam.authorization.domain.AccountRole;
+import com.epam.authorization.service.AccountRoleService;
 import com.epam.authorization.service.AccountService;
 
 @Service("customUserDetailsService")
@@ -21,6 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private AccountRoleService accountRoleService;
 
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -37,7 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		for (AccountRole role : account.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRole().toString()));
+			authorities.add(new SimpleGrantedAuthority(accountRoleService.findById(role.getId()).getRole().toString()));
 		}
 		return authorities;
 	}

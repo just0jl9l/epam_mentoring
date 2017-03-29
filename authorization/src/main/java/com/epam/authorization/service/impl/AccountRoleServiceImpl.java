@@ -3,12 +3,15 @@ package com.epam.authorization.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.authorization.dao.AccountRoleDao;
 import com.epam.authorization.domain.AccountRole;
 import com.epam.authorization.domain.AccountRoleType;
 import com.epam.authorization.service.AccountRoleService;
-
+@Service("accountRoleService")
+@Transactional
 public class AccountRoleServiceImpl implements AccountRoleService {
 
 	@Autowired

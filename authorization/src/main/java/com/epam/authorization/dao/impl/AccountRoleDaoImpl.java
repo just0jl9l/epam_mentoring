@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
 import com.epam.authorization.dao.AccountRoleDao;
 import com.epam.authorization.domain.AccountRole;
 import com.epam.authorization.domain.AccountRoleType;
 
+@Repository("accountRoleDao")
 public class AccountRoleDaoImpl implements AccountRoleDao {
 
 	private static final String SQL_SELECT_ALL = "FROM AccountRole";
