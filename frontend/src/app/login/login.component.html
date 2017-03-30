@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form method="post" class="form-login" (ngSubmit)="test()">
+            <h2 class="form-login-heading">Sign in</h2>
+
+            <label for="inputLogin" class="sr-only">Username</label>
+            <input [(ngModel)]="login"  name="login" type="text" id="inputLogin" class="form-control" placeholder="Username" required autofocus>
+            
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+            <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
