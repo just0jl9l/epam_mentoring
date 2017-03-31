@@ -1,13 +1,25 @@
-<div class="panel panel-default">
+<div class="panel panel-default login-panel">
     <div class="panel-body">
-        <form method="post" class="form-login" (ngSubmit)="test()">
+        <form method="post" class="form-login" (ngSubmit)="submit()">
             <h2 class="form-login-heading">Sign in</h2>
 
+            <div class="panel panel-danger" *ngIf="error">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Error</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Login failed!</p>
+                    <p *ngIf="error.messege">{{error.messege}}</p>
+                </div>
+            </div>
+
             <label for="inputLogin" class="sr-only">Username</label>
-            <input [(ngModel)]="login"  name="login" type="text" id="inputLogin" class="form-control" placeholder="Username" required autofocus>
-            
+            <input [(ngModel)]="login" name="login" type="text" id="inputLogin" class="form-control" placeholder="Username" required
+                autofocus>
+
             <label for="inputPassword" class="sr-only">Password</label>
-            <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input [(ngModel)]="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+                required>
 
             <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         </form>
